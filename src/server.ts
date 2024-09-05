@@ -1,6 +1,4 @@
-// Architectural pattern: MVC, Dependency Injection, MVP
-
-// MVC = MODEL VIEW CONTROLLER
-
-// Desin pattern: Middleware, Decorate
-console.log("I am here");
+import dotenv from "dotenv";
+dotenv.config();
+console.log(process.env.PORT);
+console.log(process.env.MONGO_URL);
