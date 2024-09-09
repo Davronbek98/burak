@@ -19,8 +19,19 @@
 
 // Task -H
 
-function getPositive(arr: number[]): string {
-  return arr.filter((num) => num > 0).join("");
+// function getPositive(arr: number[]): string {
+//   return arr.filter((num) => num > 0).join("");
+// }
+
+// console.log(getPositive([1, -4, 2]));
+
+// Task -2H
+
+function getDigits(input: string): string {
+  const digits: RegExpMatchArray | null = input.match(/\d+/g);
+
+  return digits ? digits.join("") : "";
 }
 
-console.log(getPositive([1, -4, 2]));
+const result = getDigits("m14i1t");
+console.log(result);
