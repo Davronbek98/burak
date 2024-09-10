@@ -27,11 +27,21 @@
 
 // Task -2H
 
-function getDigits(input: string): string {
-  const digits: RegExpMatchArray | null = input.match(/\d+/g);
+// function getDigits(input: string): string {
+//   const digits: RegExpMatchArray | null = input.match(/\d+/g);
 
-  return digits ? digits.join("") : "";
-}
+//   return digits ? digits.join("") : "";
+// }
 
-const result = getDigits("m14i1t");
-console.log(result);
+// const result = getDigits("m14i1t");
+// console.log(result);
+
+/* Project Standarts:
+-Loging Standarts
+-Naming Standarts:
+  function , method, variable => CAMEL
+  class => PASCAL
+  folder => KEBAB
+  css => SNAKE
+- Error handling
+*/
