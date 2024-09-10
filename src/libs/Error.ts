@@ -16,11 +16,11 @@ export enum Message {
   UPDATE_FAILED = "Update is failed!",
 }
 
-class Errors extends errors {
+class Errors extends Error {
   public code: HttpCode;
   public message: Message;
 
-  constructor(statusCode: HttpeCode, statusMessage: Message) {
+  constructor(statusCode: HttpCode, statusMessage: Message) {
     super();
     this.code = statusCode;
     this.message = statusMessage;
