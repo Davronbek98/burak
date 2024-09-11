@@ -45,3 +45,28 @@
   css => SNAKE
 - Error handling
 */
+
+// TASK - I
+
+function majorityElement(arr: number[]): number {
+  const countMap: { [key: number]: number } = {};
+
+  for (const num of arr) {
+    countMap[num] = (countMap[num] || 0) + 1;
+  }
+
+  let majorityElement = arr[0];
+  let maxCount = 0;
+
+  for (const num in countMap) {
+    if (countMap[num] > maxCount) {
+      maxCount = countMap[num];
+      majorityElement = parseInt(num);
+    }
+  }
+
+  return majorityElement;
+}
+
+const result = majorityElement([1, 2, 3, 4, 5, 4, 3, 4]);
+console.log(result);

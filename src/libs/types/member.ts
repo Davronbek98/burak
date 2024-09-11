@@ -10,6 +10,8 @@ export interface Member {
   memberDesc?: String;
   memberImage?: String;
   memberPoint: number;
+  createdAt: Date;
+  updatedAt: Date;
 }
 export interface MemberInput {
   memberType?: MemberType;
