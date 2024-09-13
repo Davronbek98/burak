@@ -3,12 +3,12 @@ import { MemberStatus, MemberType } from "../enums/member.enum";
 export interface Member {
   memberType?: MemberType;
   memberStatus?: MemberStatus;
-  memberNick: String;
-  memberPhone: String;
-  memberPassword?: String;
-  memberAdress?: String;
-  memberDesc?: String;
-  memberImage?: String;
+  memberNick: string;
+  memberPhone: string;
+  memberPassword?: string;
+  memberAdress?: string;
+  memberDesc?: string;
+  memberImage?: string;
   memberPoint: number;
   createdAt: Date;
   updatedAt: Date;
@@ -16,12 +16,12 @@ export interface Member {
 export interface MemberInput {
   memberType?: MemberType;
   memberStatus?: MemberStatus;
-  memberNick: String;
-  memberPhone: String;
-  memberPassword: String;
-  memberAdress?: String;
-  memberDesc?: String;
-  memberImage?: String;
+  memberNick: string;
+  memberPhone: string;
+  memberPassword: string;
+  memberAdress?: string;
+  memberDesc?: string;
+  memberImage?: string;
   memberPoint?: number;
 }
 export interface LoginInput {
