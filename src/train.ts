@@ -46,7 +46,10 @@
 - Error handling
 */
 
-// TASK - I
+// TASK - I    I-TASK:
+
+// Shunday function yozing, u parametridagi array ichida eng kop takrorlangan raqamni topib qaytarsin.
+// MASALAN: majorityElement([1,2,3,4,5,4,3,4]) return 4
 
 function majorityElement(arr: number[]): number {
   const countMap: { [key: number]: number } = {};
