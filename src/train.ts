@@ -76,3 +76,21 @@
 
 // Traditional FD => BSSR =>EJS
 // Modern FD => SPA => REACT
+
+// TASK -J
+
+function findLongestWord(sentence: string): string {
+  const words = sentence.split(" ");
+  let longestWord = "";
+
+  for (let word of words) {
+    if (word.length > longestWord.length) {
+      longestWord = word;
+    }
+  }
+
+  return longestWord;
+}
+
+// Example usage:
+console.log(findLongestWord("I come from Uzbekistan"));
