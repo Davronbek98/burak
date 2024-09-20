@@ -92,5 +92,5 @@ function findLongestWord(sentence: string): string {
   return longestWord;
 }
 
-// Example usage:
+
 console.log(findLongestWord("I come from Uzbekistan"));
