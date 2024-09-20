@@ -79,18 +79,35 @@
 
 // TASK -J
 
-function findLongestWord(sentence: string): string {
-  const words = sentence.split(" ");
-  let longestWord = "";
+// function findLongestWord(sentence: string): string {
+//   const words = sentence.split(" ");
+//   let longestWord = "";
 
-  for (let word of words) {
-    if (word.length > longestWord.length) {
-      longestWord = word;
+//   for (let word of words) {
+//     if (word.length > longestWord.length) {
+//       longestWord = word;
+//     }
+//   }
+
+//   return longestWord;
+// }
+
+// console.log(findLongestWord("I come from Uzbekistan"));
+
+// TASK- K
+
+function countVowels(str: string): number {
+  const vowels: string = "aeiouAEIOU";
+  let count: number = 0;
+
+  for (const char of str) {
+    if (vowels.includes(char)) {
+      count++;
     }
   }
 
-  return longestWord;
+  return count;
 }
 
-
-console.log(findLongestWord("I come from Uzbekistan"));
+const result = countVowels("string");
+console.log(result);
