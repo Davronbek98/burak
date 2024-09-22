@@ -54,6 +54,7 @@ restaurantController.processSignup = async (
     req.session.member = result;
     req.session.save(function () {
       res.send(result);
+      console.log(result);
     });
   } catch (err) {
     console.log("Error,processSignup:", err);
