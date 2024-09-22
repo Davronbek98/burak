@@ -96,18 +96,31 @@
 
 // TASK- K
 
-function countVowels(str: string): number {
-  const vowels: string = "aeiouAEIOU";
-  let count: number = 0;
+// function countVowels(str: string): number {
+//   const vowels: string = "aeiouAEIOU";
+//   let count: number = 0;
 
-  for (const char of str) {
-    if (vowels.includes(char)) {
-      count++;
-    }
-  }
+//   for (const char of str) {
+//     if (vowels.includes(char)) {
+//       count++;
+//     }
+//   }
 
-  return count;
+//   return count;
+// }
+
+// const result = countVowels("string");
+// console.log(result);
+
+// TASK - L
+
+function reverseSentence(sentence: string): string {
+  const words = sentence.split(" ");
+
+  const reversedWords = words.map((word) => word.split("").reverse().join(""));
+
+  return reversedWords.join(" ");
 }
 
-const result = countVowels("string");
+const result = reverseSentence("we like coding!");
 console.log(result);
