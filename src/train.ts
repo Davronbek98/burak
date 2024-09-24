@@ -124,3 +124,9 @@ function reverseSentence(sentence: string): string {
 
 const result = reverseSentence("we like coding!");
 console.log(result);
+
+/* VALIDATION:
+Frontend validation 
+Backend validation
+Database validation
+*/
