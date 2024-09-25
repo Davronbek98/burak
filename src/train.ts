@@ -114,19 +114,35 @@
 
 // TASK - L
 
-function reverseSentence(sentence: string): string {
-  const words = sentence.split(" ");
+// function reverseSentence(sentence: string): string {
+//   const words = sentence.split(" ");
 
-  const reversedWords = words.map((word) => word.split("").reverse().join(""));
+//   const reversedWords = words.map((word) => word.split("").reverse().join(""));
 
-  return reversedWords.join(" ");
-}
+//   return reversedWords.join(" ");
+// }
 
-const result = reverseSentence("we like coding!");
-console.log(result);
+// const result = reverseSentence("we like coding!");
+// console.log(result);
 
 /* VALIDATION:
 Frontend validation 
 Backend validation
 Database validation
 */
+
+// TASK - M
+
+function getSquareNumbers(
+  numbers: number[]
+): { number: number; square: number }[] {
+  return numbers.map((num) => ({
+    number: num,
+    square: num * num,
+  }));
+}
+
+// Example usage:
+const result = getSquareNumbers([1, 2, 3]);
+console.log(result);
+// Output: [{number: 1, square: 1}, {number: 2, square: 4}, {number: 3, square: 9}]
