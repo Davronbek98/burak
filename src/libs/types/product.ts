@@ -12,18 +12,33 @@ export interface Product {
   productName: String;
   productPrice: Number;
   productLeftCount: Number;
-  productSize?: ProductSize;
-  prosuctVolume?: number;
+  productSize: ProductSize;
+  prosuctVolume: number;
   productDesc?: String;
-  productImages?: String[];
-  productViews?: Number;
+  productImages: String[];
+  productViews: Number;
 }
+
 export interface ProductInput {
   productStatus?: ProductStatus;
   productCollection: ProductCollection;
   productName: String;
   productPrice: Number;
   productLeftCount: Number;
+  productSize?: ProductSize;
+  prosuctVolume?: number;
+  productDesc?: String;
+  productImages?: String[];
+  productViews?: Number;
+}
+
+export interface ProductUpdateInput {
+  _id: ObjectId;
+  productStatus?: ProductStatus;
+  productCollection?: ProductCollection;
+  productName?: String;
+  productPrice?: Number;
+  productLeftCount?: Number;
   productSize?: ProductSize;
   prosuctVolume?: number;
   productDesc?: String;
