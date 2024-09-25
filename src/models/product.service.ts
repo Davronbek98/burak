@@ -8,19 +8,25 @@ import {
 import ProductModel from "../schema/Product.model";
 
 class ProductService {
-  private readonly productmodel;
+  private readonly productModel;
 
   constructor() {
-    this.productmodel = ProductModel;
+    this.productModel = ProductModel;
   }
 
   /**  SPA */
 
   /** SSR */
 
+  public async getAllProducts(): Promise<Product[]> {
+    const result = await this.productModel.find().exec();
+    if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
+    return result;
+  }
+
   public async createNewProduct(input: ProductInput): Promise<Product> {
     try {
-      return await this.productmodel.create(input);
+      return await this.productModel.create(input);
     } catch (err) {
       console.log("Error.module: createNewProduct:", err);
       throw new Errors(HttpCode.BAD_REQUEST, Message.CREATE_FAILED);
@@ -32,7 +38,7 @@ class ProductService {
     input: ProductUpdateInput
   ): Promise<Product> {
     id = shapeIntoMongooseObjectId(id);
-    const result = await this.productmodel
+    const result = await this.productModel
       .findOneAndUpdate({ _id: id }, input, { new: true })
       .exec();
     if (!result) throw new Errors(HttpCode.NOT_MODIFIED, Message.UPDATE_FAILED);
