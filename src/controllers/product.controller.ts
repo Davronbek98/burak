@@ -69,4 +69,5 @@ productController.updateChosenProduct = async (req: Request, res: Response) => {
     else res.status(Errors.standart.code).json(Errors.standart);
   }
 };
+
 export default productController;

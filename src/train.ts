@@ -142,7 +142,5 @@ function getSquareNumbers(
   }));
 }
 
-// Example usage:
 const result = getSquareNumbers([1, 2, 3]);
 console.log(result);
-// Output: [{number: 1, square: 1}, {number: 2, square: 4}, {number: 3, square: 9}]

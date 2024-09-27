@@ -38,4 +38,9 @@ routerAdmin.post(
   productController.updateChosenProduct
 );
 /**User */
+routerAdmin.get(
+  "/user/all",
+  restaurantController.verifyRestaurant,
+  restaurantController.getUSers
+);
 export default routerAdmin;
