@@ -133,14 +133,28 @@ Database validation
 
 // TASK - M
 
-function getSquareNumbers(
-  numbers: number[]
-): { number: number; square: number }[] {
-  return numbers.map((num) => ({
-    number: num,
-    square: num * num,
-  }));
+// function getSquareNumbers(
+//   numbers: number[]
+// ): { number: number; square: number }[] {
+//   return numbers.map((num) => ({
+//     number: num,
+//     square: num * num,
+//   }));
+// }
+
+// const result = getSquareNumbers([1, 2, 3]);
+// console.log(result);
+
+// TASK - N
+
+function palindromeCheck(str: string): boolean {
+  const cleanedStr = str.toLowerCase().replace(/[^a-z0-9]/g, "");
+
+  return cleanedStr === cleanedStr.split("").reverse().join("");
 }
 
-const result = getSquareNumbers([1, 2, 3]);
-console.log(result);
+const result1 = palindromeCheck("dad");
+console.log(result1); // true
+
+const result2 = palindromeCheck("number");
+console.log(result2); // false
