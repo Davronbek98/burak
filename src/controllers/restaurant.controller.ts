@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response } from "express";
+import { json, NextFunction, Request, Response } from "express";
 import { T } from "../libs/types/common";
 import MemberService from "../models/Member.service";
 import { MemberInput, LoginInput } from "../libs/types/member";
@@ -123,14 +123,19 @@ restaurantController.getUSers = async (req: Request, res: Response) => {
   }
 };
 
-restaurantController.updateChosenUSers = (req: Request, res: Response) => {
+restaurantController.updateChosenUSers = async (
+  req: Request,
+  res: Response
+) => {
   try {
     console.log("updateChosenUSers");
-    res.render("updateChosenUSers");
+    const result = await memberService.updateChosenUSers(req.body);
+    res.status(HttpCode.OK).json({ data: result });
     // send | json | redirect | end | render
   } catch (err) {
     console.log("Error, updateChosenUSers:", err);
-    res.send("/admin");
+    if (err instanceof Errors) res.status(err.code).json(err);
+    else res.status(Errors.standart.code).json(Errors.standart);
   }
 };
 
