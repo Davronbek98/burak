@@ -110,30 +110,30 @@ restaurantController.logout = async (req: AdminRequest, res: Response) => {
   }
 };
 
-restaurantController.getUSers = async (req: Request, res: Response) => {
+restaurantController.getUsers = async (req: Request, res: Response) => {
   try {
-    console.log("getUSers");
-    const result = await memberService.getUSers;
+    console.log("getUsers");
+    const result = await memberService.getUsers();
     console.log("result:", result);
     res.render("users", { users: result });
     // send | json | redirect | end | render
   } catch (err) {
-    console.log("Error, getUSers:", err);
+    console.log("Error, getUsers:", err);
     res.redirect("/admin/login");
   }
 };
 
-restaurantController.updateChosenUSers = async (
+restaurantController.updateChosenUsers = async (
   req: Request,
   res: Response
 ) => {
   try {
-    console.log("updateChosenUSers");
-    const result = await memberService.updateChosenUSers(req.body);
+    console.log("updateChosenUser");
+    const result = await memberService.updateChosenUsers(req.body);
     res.status(HttpCode.OK).json({ data: result });
     // send | json | redirect | end | render
   } catch (err) {
-    console.log("Error, updateChosenUSers:", err);
+    console.log("Error, updateChosenUser:", err);
     if (err instanceof Errors) res.status(err.code).json(err);
     else res.status(Errors.standart.code).json(Errors.standart);
   }

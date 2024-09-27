@@ -41,11 +41,11 @@ routerAdmin.post(
 routerAdmin.get(
   "/user/all",
   restaurantController.verifyRestaurant,
-  restaurantController.getUSers
+  restaurantController.getUsers
 );
 routerAdmin.post(
   "/user/edit",
   restaurantController.verifyRestaurant,
-  restaurantController.updateChosenUSer
+  restaurantController.updateChosenUsers
 );
 export default routerAdmin;
