@@ -147,14 +147,29 @@ Database validation
 
 // TASK - N
 
-function palindromeCheck(str: string): boolean {
-  const cleanedStr = str.toLowerCase().replace(/[^a-z0-9]/g, "");
+// function palindromeCheck(str: string): boolean {
+//   const cleanedStr = str.toLowerCase().replace(/[^a-z0-9]/g, "");
 
-  return cleanedStr === cleanedStr.split("").reverse().join("");
+//   return cleanedStr === cleanedStr.split("").reverse().join("");
+// }
+
+// const result1 = palindromeCheck("dad");
+// console.log(result1); // true
+
+// const result2 = palindromeCheck("number");
+// console.log(result2); // false
+
+// TASK - O
+
+function calculateSumOfNumbers(arr: any[]): number {
+  return arr.reduce((sum, current) => {
+    if (typeof current === "number") {
+      return sum + current;
+    }
+
+    return sum;
+  }, 0);
 }
 
-const result1 = palindromeCheck("dad");
-console.log(result1); // true
-
-const result2 = palindromeCheck("number");
-console.log(result2); // false
+const result = calculateSumOfNumbers([10, "10", { number: 10 }, true, 35]);
+console.log(result); // Output: 45
