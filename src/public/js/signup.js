@@ -38,8 +38,8 @@ function validateSignupForm() {
     memberPassword === "" ||
     confirmPassword === ""
   ) {
-    alert("Please insert all required inputs!");
-    return false;
+    // alert("Please insert all required inputs!");
+    // return false;
   }
 
   if (memberPassword !== confirmPassword) {
