@@ -172,4 +172,4 @@ function calculateSumOfNumbers(arr: any[]): number {
 }
 
 const result = calculateSumOfNumbers([10, "10", { number: 10 }, true, 35]);
-console.log(result); // Output: 45
+console.log(result); 

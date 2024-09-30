@@ -8,7 +8,7 @@ $(function () {
     if (window.FileReader) {
       const uploadFile = $(this)[0].files[0];
       console.log("uploadFile:", uploadFile);
-      const fileType = uploadFile("type");
+      const fileType = uploadFile["type"];
       const validImageType = ["image/jpg", "image/jpeg", "image/png"];
       if (!validImageType.includes(fileType)) {
         alert("Please insert only jpg, jpen and png");
@@ -19,7 +19,7 @@ $(function () {
             .attr("src", URL.createObjectURL(uploadFile))
             .addClass("success");
         }
-        fileName = $(this)[0].files[0].name;
+        filename = $(this)[0].files[0].name;
       }
       $(this).siblings(".upload-name").val(filename);
     }
