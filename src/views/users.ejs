@@ -60,8 +60,8 @@
                 <th scope="col">Status</th>
               </tr>
             </thead>
-            <!--  LOOP PRODUCTS: START  -->
-            <% user.map(function(value, index){ %>
+        
+            <% users.map(function(value, index){ %>
 
             <tbody style="background: white">
               <td><%= index+1 %></td>
@@ -76,7 +76,7 @@
               </td>
             </tbody>
             <% }) %>
-            <!--  LOOP PRODUCTS: END  -->
+          
           </table>
         </div>
       </div>
