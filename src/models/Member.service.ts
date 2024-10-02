@@ -43,8 +43,14 @@ class MemberService {
         { memberNick: 1, memberPassword: 1, memberStatus: 1 }
       )
       .exec();
-    if (!member) throw new Errors(HttpCode.NOT_FOUND, Message.NO_MEMBER_NICK);
-    else if (member.memberStatus === MemberStatus.BLOCK) {
+    console.log("member:", MemberStatus.BLOCK);
+    if (!member) {
+      console.error(
+        "Login failed: No member found with nickname",
+        input.memberNick
+      );
+      throw new Errors(HttpCode.NOT_FOUND, Message.NO_MEMBER_NICK);
+    } else if (member.memberStatus === MemberStatus.BLOCK) {
       throw new Errors(HttpCode.FORBIDDEN, Message.BLOCKED_USER);
     }
 
@@ -56,7 +62,7 @@ class MemberService {
     );
 
     if (!isMatch) {
-      throw new Errors(HttpCode.UNAUTHORITHED, Message.WRONG_PASSWORD);
+      throw new Errors(HttpCode.UNAUTHORIZED, Message.WRONG_PASSWORD);
     }
 
     return await this.memberModel.findById(member._id).lean().exec();
@@ -99,7 +105,7 @@ class MemberService {
     );
 
     if (!isMatch) {
-      throw new Errors(HttpCode.UNAUTHORITHED, Message.WRONG_PASSWORD);
+      throw new Errors(HttpCode.UNAUTHORIZED, Message.WRONG_PASSWORD);
     }
 
     return await this.memberModel.findById(member._id).exec();
@@ -107,7 +113,7 @@ class MemberService {
 
   public async getUsers(): Promise<Member[]> {
     const result = await this.memberModel
-      .find({ MemberType: MemberType.USER })
+      .find({ memberType: MemberType.USER })
       .exec();
     if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
     return result;
