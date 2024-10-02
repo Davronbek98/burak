@@ -161,15 +161,23 @@ Database validation
 
 // TASK - O
 
-function calculateSumOfNumbers(arr: any[]): number {
-  return arr.reduce((sum, current) => {
-    if (typeof current === "number") {
-      return sum + current;
-    }
+// function calculateSumOfNumbers(arr: any[]): number {
+//   return arr.reduce((sum, current) => {
+//     if (typeof current === "number") {
+//       return sum + current;
+//     }
 
-    return sum;
-  }, 0);
+//     return sum;
+//   }, 0);
+// }
+
+// const result = calculateSumOfNumbers([10, "10", { number: 10 }, true, 35]);
+// console.log(result);
+
+// TASK - P
+
+function objectToArray(obj: { [key: string]: any }): [string, any][] {
+  return Object.entries(obj);
 }
-
-const result = calculateSumOfNumbers([10, "10", { number: 10 }, true, 35]);
-console.log(result); 
+const result = objectToArray({ a: 10, b: 20 });
+console.log(result);
