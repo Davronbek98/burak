@@ -45,10 +45,6 @@ class MemberService {
       .exec();
     console.log("member:", MemberStatus.BLOCK);
     if (!member) {
-      console.error(
-        "Login failed: No member found with nickname",
-        input.memberNick
-      );
       throw new Errors(HttpCode.NOT_FOUND, Message.NO_MEMBER_NICK);
     } else if (member.memberStatus === MemberStatus.BLOCK) {
       throw new Errors(HttpCode.FORBIDDEN, Message.BLOCKED_USER);

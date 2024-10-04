@@ -176,8 +176,19 @@ Database validation
 
 // TASK - P
 
-function objectToArray(obj: { [key: string]: any }): [string, any][] {
-  return Object.entries(obj);
+// function objectToArray(obj: { [key: string]: any }): [string, any][] {
+//   return Object.entries(obj);
+// }
+// const result = objectToArray({ a: 10, b: 20 });
+// console.log(result);
+
+// TASK- Q
+
+function hasProperty(obj: object, prop: string): boolean {
+  return Object.prototype.hasOwnProperty.call(obj, prop);
 }
-const result = objectToArray({ a: 10, b: 20 });
-console.log(result);
+
+const result1 = hasProperty({ name: "BMW", model: "M3" }, "model");
+console.log(result1); // true
+const result2 = hasProperty({ name: "BMW", model: "M3" }, "year");
+console.log(result2); // false
