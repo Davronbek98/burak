@@ -184,11 +184,22 @@ Database validation
 
 // TASK- Q
 
-function hasProperty(obj: object, prop: string): boolean {
-  return Object.prototype.hasOwnProperty.call(obj, prop);
+// function hasProperty(obj: object, prop: string): boolean {
+//   return Object.prototype.hasOwnProperty.call(obj, prop);
+// }
+
+// const result1 = hasProperty({ name: "BMW", model: "M3" }, "model");
+// console.log(result1); // true
+// const result2 = hasProperty({ name: "BMW", model: "M3" }, "year");
+// console.log(result2); // false
+
+// TASK - R
+
+function calculate(expression: string): number {
+  const numbers = expression.split("+").map(Number);
+
+  return numbers.reduce((a, b) => a + b, 0);
 }
 
-const result1 = hasProperty({ name: "BMW", model: "M3" }, "model");
-console.log(result1); // true
-const result2 = hasProperty({ name: "BMW", model: "M3" }, "year");
-console.log(result2); // false
+const result = calculate("1+3");
+console.log(result);
