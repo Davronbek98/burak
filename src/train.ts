@@ -195,11 +195,26 @@ Database validation
 
 // TASK - R
 
-function calculate(expression: string): number {
-  const numbers = expression.split("+").map(Number);
+// function calculate(expression: string): number {
+//   const numbers = expression.split("+").map(Number);
 
-  return numbers.reduce((a, b) => a + b, 0);
+//   return numbers.reduce((a, b) => a + b, 0);
+// }
+
+// const result = calculate("1+3");
+// console.log(result);
+
+// TASK - S
+
+function missingNumber(nums: number[]): number {
+  const n = nums.length;
+
+  const expectedSum = (n * (n + 1)) / 2;
+
+  const actualSum = nums.reduce((acc, num) => acc + num, 0);
+
+  return expectedSum - actualSum;
 }
 
-const result = calculate("1+3");
+const result = missingNumber([3, 0, 1]);
 console.log(result);
