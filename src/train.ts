@@ -206,15 +206,26 @@ Database validation
 
 // TASK - S
 
-function missingNumber(nums: number[]): number {
-  const n = nums.length;
+// function missingNumber(nums: number[]): number {
+//   const n = nums.length;
 
-  const expectedSum = (n * (n + 1)) / 2;
+//   const expectedSum = (n * (n + 1)) / 2;
 
-  const actualSum = nums.reduce((acc, num) => acc + num, 0);
+//   const actualSum = nums.reduce((acc, num) => acc + num, 0);
 
-  return expectedSum - actualSum;
+//   return expectedSum - actualSum;
+// }
+
+// const result = missingNumber([3, 0, 1]);
+// console.log(result);
+
+// TASK -T
+
+function mergeSortedArrays(arr1: number[], arr2: number[]): number[] {
+  const mergedArray: number[] = [...arr1, ...arr2];
+
+  return mergedArray.sort((a, b) => a - b);
 }
 
-const result = missingNumber([3, 0, 1]);
+const result = mergeSortedArrays([0, 3, 4, 31], [4, 6, 30]);
 console.log(result);
