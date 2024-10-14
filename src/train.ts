@@ -219,13 +219,26 @@ Database validation
 // const result = missingNumber([3, 0, 1]);
 // console.log(result);
 
-// TASK -T
+// // TASK -T
 
-function mergeSortedArrays(arr1: number[], arr2: number[]): number[] {
-  const mergedArray: number[] = [...arr1, ...arr2];
+// function mergeSortedArrays(arr1: number[], arr2: number[]): number[] {
+//   const mergedArray: number[] = [...arr1, ...arr2];
 
-  return mergedArray.sort((a, b) => a - b);
+//   return mergedArray.sort((a, b) => a - b);
+// }
+
+// const result = mergeSortedArrays([0, 3, 4, 31], [4, 6, 30]);
+// console.log(result);
+
+//TASK - U
+
+function sumOdds(number: number): number {
+  let count = 0;
+  for (let i = 1; i <= number; i += 2) {
+    count++;
+  }
+  return count;
 }
 
-const result = mergeSortedArrays([0, 3, 4, 31], [4, 6, 30]);
-console.log(result);
+console.log(sumOdds(9));
+console.log(sumOdds(11));
