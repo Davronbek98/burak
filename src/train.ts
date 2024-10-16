@@ -232,13 +232,32 @@ Database validation
 
 //TASK - U
 
-function sumOdds(number: number): number {
-  let count = 0;
-  for (let i = 1; i <= number; i += 2) {
-    count++;
+// function sumOdds(number: number): number {
+//   let count = 0;
+//   for (let i = 1; i <= number; i += 2) {
+//     count++;
+//   }
+//   return count;
+// }
+
+// console.log(sumOdds(9));
+// console.log(sumOdds(11));
+
+// TASK- V
+
+function countChars(str: string): Record<string, number> {
+  const result: Record<string, number> = {};
+
+  for (let char of str) {
+    if (result[char]) {
+      result[char]++;
+    } else {
+      result[char] = 1;
+    }
   }
-  return count;
+
+  return result;
 }
 
-console.log(sumOdds(9));
-console.log(sumOdds(11));
+const output = countChars("hello");
+console.log(output);
