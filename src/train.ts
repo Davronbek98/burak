@@ -261,3 +261,19 @@ Database validation
 
 // const output = countChars("hello");
 // console.log(output);
+
+// TASK- W
+
+function chunkArray(arr: number[], chunkSize: number): number[][] {
+  const result: number[][] = [];
+
+  for (let i = 0; i < arr.length; i += chunkSize) {
+    result.push(arr.slice(i, i + chunkSize));
+  }
+
+  return result;
+}
+
+const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const chunkSize = 3;
+console.log(chunkArray(array, chunkSize));
