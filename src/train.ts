@@ -264,16 +264,65 @@ Database validation
 
 // TASK- W
 
-function chunkArray(arr: number[], chunkSize: number): number[][] {
-  const result: number[][] = [];
+// function chunkArray(arr: number[], chunkSize: number): number[][] {
+//   const result: number[][] = [];
 
-  for (let i = 0; i < arr.length; i += chunkSize) {
-    result.push(arr.slice(i, i + chunkSize));
+//   for (let i = 0; i < arr.length; i += chunkSize) {
+//     result.push(arr.slice(i, i + chunkSize));
+//   }
+
+//   return result;
+// }
+
+// const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+// const chunkSize = 3;
+// console.log(chunkArray(array, chunkSize));
+
+// TASK X
+
+// Shunday function yozing, uni object va string parametrlari bo'lsin.
+// Bu function, birinchi object parametri tarkibida, kalit sifatida ikkinchi string parametri
+// necha marotaba takrorlanganlini sanab qaytarsin.
+
+// Eslatma => Nested object'lar ham sanalsin
+
+// MASALAN: countOccurrences({model: 'Bugatti', steer: {model: 'HANKOOK', size: 30}}, 'model') return 2
+
+// Yuqoridagi misolda, birinchi argument object, ikkinchi argument 'model'.
+// Funktsiya, shu ikkinchi argument 'model', birinchi argument object
+// tarkibida kalit sifatida 2 marotaba takrorlanganligi uchun 2 soni return qilmoqda
+
+function countOccurrences(
+  obj: {
+    [x: string]: any;
+    model?: string;
+    steer?: { model: string; size: number };
+  },
+  key: string
+) {
+  let count = 0;
+
+  function recursiveSearch(object: { [x: string]: any }) {
+    for (let k in object) {
+      if (k === key) {
+        count++;
+      }
+      if (typeof object[k] === "object" && object[k] !== null) {
+        recursiveSearch(object[k]);
+      }
+    }
   }
 
-  return result;
+  recursiveSearch(obj);
+  return count;
 }
 
-const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-const chunkSize = 3;
-console.log(chunkArray(array, chunkSize));
+const exampleObj = {
+  model: "Bugatti",
+  steer: {
+    model: "HANKOOK",
+    size: 30,
+  },
+};
+
+console.log(countOccurrences(exampleObj, "model"));
