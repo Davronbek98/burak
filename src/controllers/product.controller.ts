@@ -3,12 +3,37 @@ import Errors, { HttpCode, Message } from "../libs/Error";
 import { T } from "../libs/types/common";
 import ProductService from "../models/Product.service";
 import { AdminRequest } from "../libs/types/member";
-import { ProductInput } from "../libs/types/product";
+import { ProductInput, ProductInquiry } from "../libs/types/product";
+import { ProductCollection } from "../libs/enums/product.enum";
 
 const productService = new ProductService();
 
 const productController: T = {};
 /**  SPA */
+
+productController.getProducts = async (req: Request, res: Response) => {
+  try {
+    console.log("getProducts");
+    const { page, limit, order, productCollection, search } = req.query;
+    const inquiry: ProductInquiry = {
+      order: String(order),
+      page: Number(page),
+      limit: Number(limit),
+      search: String(search),
+    };
+
+    if (productCollection)
+      inquiry.productCollection = productCollection as ProductCollection;
+
+    const result = await productService.getProducts(inquiry);
+
+    res.status(HttpCode.OK).json({ result: "DONE!" });
+  } catch (err) {
+    console.log("Error,getProducts:", err);
+    if (err instanceof Errors) res.status(err.code).json();
+    else res.status(Errors.standart.code).json(Errors.standart);
+  }
+};
 
 /** SSR */
 productController.getAllProducts = async (req: Request, res: Response) => {
