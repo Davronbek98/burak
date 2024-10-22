@@ -22,14 +22,29 @@ productController.getProducts = async (req: Request, res: Response) => {
       search: String(search),
     };
 
-    if (productCollection)
+    if (productCollection) {
       inquiry.productCollection = productCollection as ProductCollection;
+    }
 
     const result = await productService.getProducts(inquiry);
 
-    res.status(HttpCode.OK).json({ result: "DONE!" });
+    res.status(HttpCode.OK).json(result);
   } catch (err) {
     console.log("Error,getProducts:", err);
+    if (err instanceof Errors) res.status(err.code).json();
+    else res.status(Errors.standart.code).json(Errors.standart);
+  }
+};
+productController.getProduct = async (req: Request, res: Response) => {
+  try {
+    console.log("getProduct");
+    const { id } = req.params;
+    const memberId = req.member?._id ?? null,
+      result = await productService.getProduct(memberId, id);
+
+    res.status(HttpCode.OK).json(result);
+  } catch (err) {
+    console.log("Error,getProduct:", err);
     if (err instanceof Errors) res.status(err.code).json();
     else res.status(Errors.standart.code).json(Errors.standart);
   }
