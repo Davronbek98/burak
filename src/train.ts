@@ -292,37 +292,45 @@ Database validation
 // Funktsiya, shu ikkinchi argument 'model', birinchi argument object
 // tarkibida kalit sifatida 2 marotaba takrorlanganligi uchun 2 soni return qilmoqda
 
-function countOccurrences(
-  obj: {
-    [x: string]: any;
-    model?: string;
-    steer?: { model: string; size: number };
-  },
-  key: string
-) {
-  let count = 0;
+// function countOccurrences(
+//   obj: {
+//     [x: string]: any;
+//     model?: string;
+//     steer?: { model: string; size: number };
+//   },
+//   key: string
+// ) {
+//   let count = 0;
 
-  function recursiveSearch(object: { [x: string]: any }) {
-    for (let k in object) {
-      if (k === key) {
-        count++;
-      }
-      if (typeof object[k] === "object" && object[k] !== null) {
-        recursiveSearch(object[k]);
-      }
-    }
-  }
+//   function recursiveSearch(object: { [x: string]: any }) {
+//     for (let k in object) {
+//       if (k === key) {
+//         count++;
+//       }
+//       if (typeof object[k] === "object" && object[k] !== null) {
+//         recursiveSearch(object[k]);
+//       }
+//     }
+//   }
 
-  recursiveSearch(obj);
-  return count;
+//   recursiveSearch(obj);
+//   return count;
+// }
+
+// const exampleObj = {
+//   model: "Bugatti",
+//   steer: {
+//     model: "HANKOOK",
+//     size: 30,
+//   },
+// };
+
+// console.log(countOccurrences(exampleObj, "model"));
+
+// TASK -X
+
+function findIntersection(arr1: number[], arr2: number[]): number[] {
+  return arr1.filter((value) => arr2.includes(value));
 }
 
-const exampleObj = {
-  model: "Bugatti",
-  steer: {
-    model: "HANKOOK",
-    size: 30,
-  },
-};
-
-console.log(countOccurrences(exampleObj, "model"));
+console.log(findIntersection([1, 2, 3], [3, 2, 0]));
