@@ -329,8 +329,19 @@ Database validation
 
 // TASK -X
 
-function findIntersection(arr1: number[], arr2: number[]): number[] {
-  return arr1.filter((value) => arr2.includes(value));
+// function findIntersection(arr1: number[], arr2: number[]): number[] {
+//   return arr1.filter((value) => arr2.includes(value));
+// }
+
+// console.log(findIntersection([1, 2, 3], [3, 2, 0]));
+
+// TASK- Z
+// Shunday function yozing, u sonlardan tashkil topgan array qabul qilsin. Function arraydagi juft sonlarni yigindisini qaytarsin
+// MASALAN: sumEvens([1,2,3]) return 2
+
+function sumEvens(arr: number[]): number {
+  return arr.filter((num) => num % 2 === 0).reduce((sum, num) => sum + num, 0);
 }
 
-console.log(findIntersection([1, 2, 3], [3, 2, 0]));
+const result = sumEvens([1, 2, 3]);
+console.log(result); // 2
