@@ -86,10 +86,15 @@ memberController.logout = (req: ExtendedRequest, res: Response) => {
   }
 };
 
-memberController.getMemberDetail = (req: ExtendedRequest, res: Response) => {
+memberController.getMemberDetail = async (
+  req: ExtendedRequest,
+  res: Response
+) => {
   try {
     console.log("getMemberDetail");
-    const result = memberService.getMemberDetail(req.member);
+    console.log("member:", req.member);
+
+    const result = await memberService.getMemberDetail(req.member);
 
     res.status(HttpCode.OK).json(result);
   } catch (err) {

@@ -24,6 +24,7 @@ class MemberService {
         memberStatus: MemberStatus.ACTIVE,
       })
       .exec();
+    console.log("result:", result);
 
     if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
 
@@ -61,7 +62,7 @@ class MemberService {
   public async addUserPoint(member: Member, point: number): Promise<Member> {
     const memberId = shapeIntoMongooseObjectId(member._id);
 
-    return await this.memberModel
+    const result1 = await this.memberModel
       .findByIdAndUpdate(
         {
           _id: memberId,
@@ -69,10 +70,12 @@ class MemberService {
           memberStatus: MemberStatus.ACTIVE,
         },
 
-        { $inc: { memberPoints: point } },
+        { $inc: { memberPoint: point } },
         { new: true }
       )
       .exec();
+    console.log("result1:", result1);
+    return result1;
   }
 
   /**SPA */

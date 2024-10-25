@@ -1,16 +1,17 @@
-import { shapeIntoMongooseObjectId } from "../libs/config";
-import { OrderStatus } from "../libs/enums/order.enum";
-import Errors, { HttpCode, Message } from "../libs/Error";
-import { Member } from "../libs/types/member";
 import {
   Order,
   OrderInquiry,
   OrderItemInput,
   OrderUpdateInput,
 } from "../libs/types/order";
+import { Member } from "../libs/types/member";
 import OrderModel from "../schema/Order.model";
 import OrderItemModel from "../schema/OrderItem.model";
+import { shapeIntoMongooseObjectId } from "../libs/config";
+import Errors, { Message } from "../libs/Error";
+import { HttpCode } from "../libs/Error";
 import { ObjectId } from "mongoose";
+import { OrderStatus } from "../libs/enums/order.enum";
 import MemberService from "./Member.service";
 
 class OrderService {
@@ -33,7 +34,6 @@ class OrderService {
       return accumulator + item.itemPrice * item.itemQuantity;
     }, 0);
     const delivery = amount < 100 ? 5 : 0;
-
     try {
       const newOrder: Order = await this.orderModel.create({
         orderTotal: amount + delivery,
@@ -42,29 +42,31 @@ class OrderService {
       });
 
       const orderId = newOrder._id;
-      console.log("orderId:", orderId);
+      console.log("orderId", orderId);
       await this.recordOrderItem(orderId, input);
+      //TODO create orderItems
+
       return newOrder;
     } catch (err) {
-      console.log("Error, model: createOrder:", err);
+      console.log("Error, model:createOrder:", err);
       throw new Errors(HttpCode.BAD_REQUEST, Message.CREATE_FAILED);
     }
   }
 
   private async recordOrderItem(
-    orderId: ObjectId,
+    orderid: ObjectId,
     input: OrderItemInput[]
   ): Promise<void> {
-    const promisedLIst = input.map(async (item: OrderItemInput) => {
-      item.orderId = orderId;
+    const promisedList = input.map(async (item: OrderItemInput) => {
+      item.orderId = orderid;
       item.productId = shapeIntoMongooseObjectId(item.productId);
       await this.orderItemModel.create(item);
+
       return "INSERTED";
     });
 
-    console.log("promisedList:", promisedLIst);
-    const orderItemsState = await Promise.all(promisedLIst);
-    console.log("orderItemsList:", orderItemsState);
+    const orderItemsState = await Promise.all(promisedList);
+    console.log("orderItemsState:", orderItemsState);
   }
 
   public async getMyOrders(
@@ -73,6 +75,7 @@ class OrderService {
   ): Promise<Order[]> {
     const memberId = shapeIntoMongooseObjectId(member._id);
     const matches = { memberId: memberId, orderStatus: inquiry.orderStatus };
+    console.log("matches:", matches);
 
     const result = await this.orderModel
       .aggregate([
@@ -99,6 +102,8 @@ class OrderService {
       ])
       .exec();
 
+    console.log("result:", result);
+
     if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
 
     return result;
@@ -113,18 +118,17 @@ class OrderService {
       orderStatus = input.orderStatus;
 
     const result = await this.orderModel
-      .findByIdAndUpdate(
-        {
-          memberId: memberId,
-          _id: orderId,
-        },
+      .findOneAndUpdate(
+        { memberId: memberId, _id: orderId },
         { orderStatus: orderStatus },
         { new: true }
       )
       .exec();
+    console.log("result:", result);
+    if (!result)
+      throw new Errors(HttpCode.NOT_MODIFIED, Message.TOKEN_CREATION_FAILED);
 
-    if (!result) throw new Errors(HttpCode.NOT_MODIFIED, Message.UPDATE_FAILED);
-
+    // orderStatus Pause => Process + 1 to users
     if (orderStatus === OrderStatus.PROCESS) {
       await this.memberService.addUserPoint(member, 1);
     }

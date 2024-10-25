@@ -344,4 +344,4 @@ function sumEvens(arr: number[]): number {
 }
 
 const result = sumEvens([1, 2, 3]);
-console.log(result); // 2
+console.log(result);
