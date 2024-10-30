@@ -339,9 +339,20 @@ Database validation
 // Shunday function yozing, u sonlardan tashkil topgan array qabul qilsin. Function arraydagi juft sonlarni yigindisini qaytarsin
 // MASALAN: sumEvens([1,2,3]) return 2
 
-function sumEvens(arr: number[]): number {
-  return arr.filter((num) => num % 2 === 0).reduce((sum, num) => sum + num, 0);
+// function sumEvens(arr: number[]): number {
+//   return arr.filter((num) => num % 2 === 0).reduce((sum, num) => sum + num, 0);
+// }
+
+// const result = sumEvens([1, 2, 3]);
+// console.log(result);
+
+// TASK- ZA
+
+type Person = { age: number };
+
+function sortByAge(arr: Person[]): Person[] {
+  return arr.sort((a, b) => a.age - b.age);
 }
 
-const result = sumEvens([1, 2, 3]);
+const result = sortByAge([{ age: 23 }, { age: 21 }, { age: 13 }]);
 console.log(result);
