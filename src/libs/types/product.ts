@@ -9,14 +9,16 @@ export interface Product {
   _id: ObjectId;
   productStatus: ProductStatus;
   productCollection: ProductCollection;
-  productName: String;
-  productPrice: Number;
-  productLeftCount: Number;
+  productName: string;
+  productPrice: number;
+  productLeftCount: number;
   productSize: ProductSize;
   prosuctVolume: number;
-  productDesc?: String;
-  productImages: String[];
-  productViews: Number;
+  productDesc?: string;
+  productImages: string[];
+  productViews: number;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export interface ProductInquiry {
@@ -30,26 +32,26 @@ export interface ProductInquiry {
 export interface ProductInput {
   productStatus?: ProductStatus;
   productCollection: ProductCollection;
-  productName: String;
-  productPrice: Number;
-  productLeftCount: Number;
+  productName: string;
+  productPrice: number;
+  productLeftCount: number;
   productSize?: ProductSize;
   prosuctVolume?: number;
-  productDesc?: String;
-  productImages?: String[];
-  productViews?: Number;
+  productDesc?: string;
+  productImages?: string[];
+  productViews?: number;
 }
 
 export interface ProductUpdateInput {
   _id: ObjectId;
   productStatus?: ProductStatus;
   productCollection?: ProductCollection;
-  productName?: String;
-  productPrice?: Number;
-  productLeftCount?: Number;
+  productName?: string;
+  productPrice?: number;
+  productLeftCount?: number;
   productSize?: ProductSize;
   prosuctVolume?: number;
-  productDesc?: String;
-  productImages?: String[];
-  productViews?: Number;
+  productDesc?: string;
+  productImages?: string[];
+  productViews?: number;
 }

@@ -26,7 +26,7 @@ class ProductService {
   /**  SPA */
 
   public async getProducts(inquiry: ProductInquiry): Promise<Product[]> {
-    const match: T = { ProductStatus: ProductStatus.PROCESS };
+    const match: T = { productStatus: ProductStatus.PROCESS };
 
     if (inquiry.productCollection)
       match.productCollection = inquiry.productCollection;
@@ -40,6 +40,8 @@ class ProductService {
         ? { [inquiry.order]: 1 }
         : { [inquiry.order]: -1 };
 
+    console.log("sort:", sort);
+
     const result = await this.productModel
       .aggregate([
         { $match: match },
@@ -49,8 +51,10 @@ class ProductService {
       ])
       .exec();
 
-    if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
+    console.log("match:", match);
+    console.log("result:", result);
 
+    if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
     return result;
   }
 
